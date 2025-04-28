@@ -409,39 +409,4 @@ Ce projet a permis de :
 
 Les compétences acquises sont applicables à des audits de sécurité réels. Un jeu de données plus large permettrait des analyses plus approfondies à l'avenir. Le rapport et les recommandations sont prêts à être soumis pour évaluation.
 
-## Annexes
 
-### Instructions pour la Présentation
-
-Créer une présentation (10 minutes) :
-
-- **Outil** : LibreOffice Impress (`sudo apt install libreoffice`) ou Canva.
-- **Structure** :
-  - Introduction : Objectifs du projet.
-  - Méthodologie : Importation et requêtes.
-  - Résultats clés : Pays suspects, connexions hors heures.
-  - Recommandations : Liste blanche, MFA, SIEM.
-  - Conclusion : Enseignements et limites.
-
-- **Graphique** :
-  ```bash
-  mysql organization -e "SELECT HOUR(login_time) AS hour, COUNT(*) AS failed_count FROM log_in_attempts WHERE success = FALSE GROUP BY hour;" > /home/muhammad/SN-DATABASES-AND-SQL/failed_by_hour.csv
-  ```
-  Importer dans LibreOffice Calc pour un histogramme.
-
-- **Exporter le rapport** :
-  - Copier ce Markdown dans `/home/muhammad/SN-DATABASES-AND-SQL/report.md`.
-  - Convertir en PDF :
-    ```bash
-    pandoc /home/muhammad/SN-DATABASES-AND-SQL/report.md -o /home/muhammad/SN-DATABASES-AND-SQL/report.pdf
-    ```
-
-- **Répéter** :
-  - Chronométrer pour 10 minutes.
-  - Noter le feedback du professeur.
-
-### Sauvegarde Finale
-```bash
-mysqldump -u root -p organization > /home/muhammad/SN-DATABASES-AND-SQL/organization_final_backup.sql
-tar -czf /home/muhammad/SN-DATABASES-AND-SQL-project.tar.gz /home/muhammad/SN-DATABASES-AND-SQL
-```
